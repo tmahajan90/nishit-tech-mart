@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :get_vehicle_types, only: [:new, :edit]
 
   def index
     @items = Item.all
@@ -40,7 +41,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def get_vehicle_types
+    @vehicle_types = VehicleType.all
+  end
+
   def item_params
-    params.require(:item).permit(:name, :category, :quantity, :description, :remaining_quantity)
+    params.require(:item).permit(:vehicle_type_id, :received_on, :quantity, :description, :remaining_quantity)
   end
 end

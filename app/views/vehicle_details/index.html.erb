@@ -6,7 +6,7 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
       <h1>
-        All Item Details
+        All Vehicle Details
       </h1>
       <ol class="breadcrumb">
         <li>
@@ -14,7 +14,7 @@
             <i class="fa fa-home"></i>
             Home Page</a>
         </li>
-        <li class="active">All Item Details</li>
+        <li class="active">All Vehicle Details</li>
       </ol>
     </section>
 
@@ -29,7 +29,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                  <th>Item</th>
+                  <th>Vehicle Type</th>
+                  <th>Vehicle Received On</th>
                   <th>Chassie No</th>
                   <th>Engine No</th>
                   <th>
@@ -41,14 +42,15 @@
                 </tr>
                   </thead>
                   <tbody>
-                  <% @item_details.each do |item_detail| %>
+                  <% @vehicle_details.each do |vehicle_detail| %>
                     <tr>
-                      <td><%= item_detail.item.name %></td>
-                      <td><%= item_detail.chassie_no %></td>
-                      <td><%= item_detail.engine_no %></td>
-                      <td><%= link_to "", edit_item_detail_path(item_detail), { class: "ion ion-edit"} %></td>
+                      <td><%= vehicle_detail.item.vehicle_type.name %></td>
+                      <td><%= vehicle_detail.item.received_on.strftime('%Y-%m-%d') %></td>
+                      <td><%= vehicle_detail.chassie_no %></td>
+                      <td><%= vehicle_detail.engine_no %></td>
+                      <td><%= link_to "", edit_vehicle_detail_path(vehicle_detail), { class: "ion ion-edit"} %></td>
                       <td>
-                        <%= link_to item_detail, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <%= link_to vehicle_detail, method: :delete, data: { confirm: 'Are you sure?' } do %>
                         <i class="ion ion-trash-b"></i>
                         <% end %>
                       </td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210925121346) do
+ActiveRecord::Schema.define(version: 20210925150556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,17 +30,9 @@ ActiveRecord::Schema.define(version: 20210925121346) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  create_table "item_details", force: :cascade do |t|
-    t.integer  "item_id"
-    t.string   "chassie_no"
-    t.string   "engine_no"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.string   "category"
+    t.string   "vehicle_type_id"
+    t.datetime "received_on"
     t.integer  "quantity"
     t.text     "description"
     t.datetime "created_at",         null: false
@@ -84,6 +76,25 @@ ActiveRecord::Schema.define(version: 20210925121346) do
     t.string   "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "vehicle_details", force: :cascade do |t|
+    t.integer  "item_id"
+    t.string   "chassie_no"
+    t.string   "engine_no"
+    t.string   "controller_no"
+    t.string   "motor_no"
+    t.string   "charger_no"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "vehicle_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "watts"
+    t.string   "battery_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_foreign_key "orders", "items"

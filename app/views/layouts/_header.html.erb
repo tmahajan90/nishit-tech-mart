@@ -47,12 +47,7 @@
           <span>Home Page</span>
         </a>
       </li>
-      <li>
-        <a href="<%= items_path %>">
-          <i class="fa fa-search"></i>
-          <span>Check Inventory</span>
-        </a>
-      </li>
+      <br>
       <li>
         <a href="<%= past_orders_path %>">
           <i class="fa fa-history"></i>
@@ -63,19 +58,26 @@
       <li>
         <a href=" <%= new_item_path %>">
           <i class="fa fa-plus"></i>
-          <span>Add Item</span>
+          <span>Add Consignment</span>
         </a>
       </li>
       <li>
-        <a href="<%= new_item_detail_path %>">
+        <a href="<%= items_path %>">
+          <i class="fa fa-search"></i>
+          <span>All Consignments</span>
+        </a>
+      </li>
+      <br>
+      <li>
+        <a href="<%= new_vehicle_detail_path %>">
           <i class="fa fa-plus-square"></i>
-          <span>Add New Item Detail</span>
+          <span>Add New Vehicle Detail</span>
         </a>
       </li>
       <li>
-        <a href="<%= item_details_path %>">
+        <a href="<%= vehicle_details_path %>">
           <i class="fa fa-list-ul"></i>
-          <span>All Item Details</span>
+          <span>All Vehicle Details</span>
         </a>
       </li>
       <br>

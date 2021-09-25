@@ -1,4 +1,4 @@
-class ItemDetail < ApplicationRecord
+class VehicleDetail < ApplicationRecord
     belongs_to :item
 
     validates :item_id, :presence => true

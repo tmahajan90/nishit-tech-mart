@@ -1,2 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.disable-btn {
+    opacity: 0.4;
+    cursor: not-allowed;
+    color: red
+}
+
+.disable-btn:hover {
+    color: red;
+  }
+
+.red-text {
+    color: red
+}

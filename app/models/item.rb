@@ -1,8 +1,10 @@
 class Item < ApplicationRecord
-  has_one :item_detail
+  belongs_to :vehicle_type
+  has_many :vehicle_details
   has_many :orders
   has_many :members, through: :orders
 
-  validates :name, presence: true
-  validates :category, presence: true
+  validates :vehicle_type_id, presence: true
+  validates :received_on, presence: true
+  validates :quantity, presence: true
 end
