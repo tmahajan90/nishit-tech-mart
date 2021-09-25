@@ -1,27 +1,75 @@
-<p id="notice"><%= notice %></p>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <%= render 'layouts/header' %>
+    <div class="content-wrapper">
 
-<h1>Item Details</h1>
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+      <h1>
+        All Item Details
+      </h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="#">
+            <i class="fa fa-home"></i>
+            Home Page</a>
+        </li>
+        <li class="active">All Item Details</li>
+      </ol>
+    </section>
 
-<table>
-  <thead>
-    <tr>
-      <th>Chassie no</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- Main data table -->
+            <div class="box">
 
-  <tbody>
-    <% @item_details.each do |item_detail| %>
-      <tr>
-        <td><%= item_detail.chassie_no %></td>
-        <td><%= link_to 'Show', item_detail %></td>
-        <td><%= link_to 'Edit', edit_item_detail_path(item_detail) %></td>
-        <td><%= link_to 'Destroy', item_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Item Detail', new_item_detail_path %>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                  <th>Item</th>
+                  <th>Chassie No</th>
+                  <th>Engine No</th>
+                  <th>
+                    <i class="ion ion-edit"></i>
+                  </th>
+                  <th>
+                    <i class="ion ion-trash-b"></i>
+                  </th>
+                </tr>
+                  </thead>
+                  <tbody>
+                  <% @item_details.each do |item_detail| %>
+                    <tr>
+                      <td><%= item_detail.item.name %></td>
+                      <td><%= item_detail.chassie_no %></td>
+                      <td><%= item_detail.engine_no %></td>
+                      <td><%= link_to "", edit_item_detail_path(item_detail), { class: "ion ion-edit"} %></td>
+                      <td>
+                        <%= link_to item_detail, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <i class="ion ion-trash-b"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <%= render 'layouts/footer' %>
+  </div>
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "pageLength": 50, 
+      });
+    });
+  </script>
+</body>

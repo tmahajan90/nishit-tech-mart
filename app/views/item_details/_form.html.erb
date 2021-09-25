@@ -44,11 +44,15 @@
               <div class="box-body">
                 <div class="form-group">
                   <label>Item</label>
-                  <%= f.select(:item_id, [["Optima","Optima"], ["Photon","Photon"]], {}, { :class => 'form-control' })%>
+                  <%= f.select(:item_id, @items.map { |item| [ item.name, item.id ]}, {}, { :class => 'form-control' })%>
                 </div>
                 <div class="form-group">
                   <label>Chassie No.</label>
                   <%= f.text_field :chassie_no, class: "form-control", placeholder: "Enter Chassie No.", required: true  %>
+                </div>
+                <div class="form-group">
+                  <label>Engine No.</label>
+                  <%= f.text_field :engine_no, class: "form-control", placeholder: "Enter Engine No.", required: true  %>
                 </div>
                 
               </div>
