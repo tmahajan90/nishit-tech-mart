@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_data, only: [:new, :show, :edit]
 
   def index
     @orders = Order.all
-    @members = Member.all
-    @items = Item.all
-    @active = Order.active?
-    @expired = Order.expired?
   end
 
   def old
@@ -44,28 +41,24 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @member = Member.all
   end
 
   def create
-    if Item.find_by_id(params[:order][:item_id]).remaining_quantity >= params[:order][:quantity].to_i
-      params[:order][:status] = true
-      @order = Order.new(order_params)
-      if @order.save
-        @current_user = current_user
-        @borrowed_item = Item.find_by_id(params[:order][:item_id])
-        @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
-        redirect_to :root, notice: 'Order was successfully created.'
-        begin
-          OrderMailer.delay.create_order(@order, @current_user).deliver
-        rescue Exception => e
-        end
-      else
-        render :new
-      end
+    @order = Order.new(order_params)
+    if @order.save
+      redirect_to :root, notice: 'Order was successfully created.'else
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @order.update(order_params)
+      redirect_to :root, notice: 'Order was successfully updated.'
     else
-      flash[:alert] = 'The quantity you entered is not currently available'
-      redirect_to :back
+      render :edit
     end
   end
 
@@ -88,7 +81,12 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
+    def set_data
+      @members = Member.all
+      @vehicle_details = VehicleDetail.all
+    end
+
     def order_params
-      params.require(:order).permit(:quantity, :expire_at, :status, :item_id, :member_id)
+      params.require(:order).permit(:id, :delivery_on, :member_id, :vehicle_detail_id)
     end
 end

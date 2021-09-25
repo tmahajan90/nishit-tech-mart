@@ -1,10 +1,10 @@
 class VehicleDetailsController < ApplicationController
   before_action :set_vehicle_detail, only: [:show, :edit, :update, :destroy]
+  before_action :get_items, only: [:new, :edit, :index]
 
   # GET /vehicle_details
   # GET /vehicle_details.json
   def index
-    @items = Item.all
     @vehicle_details = VehicleDetail.all
   end
 
@@ -15,7 +15,6 @@ class VehicleDetailsController < ApplicationController
 
   # GET /vehicle_details/new
   def new
-    @items = Item.all
     @vehicle_detail = VehicleDetail.new
   end
 
@@ -67,6 +66,10 @@ class VehicleDetailsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vehicle_detail
       @vehicle_detail = VehicleDetail.find(params[:id])
+    end
+
+    def get_items
+      @items = Item.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

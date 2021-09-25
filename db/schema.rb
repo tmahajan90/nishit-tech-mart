@@ -49,15 +49,13 @@ ActiveRecord::Schema.define(version: 20210925150556) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "quantity"
-    t.boolean  "status"
-    t.date     "expire_at"
-    t.integer  "item_id"
+    t.string   "delivery_on"
     t.integer  "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_orders_on_item_id", using: :btree
+    t.integer  "vehicle_detail_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["member_id"], name: "index_orders_on_member_id", using: :btree
+    t.index ["vehicle_detail_id"], name: "index_orders_on_vehicle_detail_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,6 +95,6 @@ ActiveRecord::Schema.define(version: 20210925150556) do
     t.datetime "updated_at",   null: false
   end
 
-  add_foreign_key "orders", "items"
   add_foreign_key "orders", "members"
+  add_foreign_key "orders", "vehicle_details"
 end

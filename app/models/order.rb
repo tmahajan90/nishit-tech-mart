@@ -1,18 +1,24 @@
 class Order < ApplicationRecord
-  belongs_to :item
+  belongs_to :vehicle_detail
   belongs_to :member
 
-  validates :quantity, presence: true
-  validates :expire_at, presence: true
-  validates :item_id, presence: true
+  # validates :pick_up_at, presence: true
+  validates :vehicle_detail_id, presence: true
   validates :member_id, presence: true
 
+
+  def self.today?
+    Order.where(delivery_on: Date.today)
+  end
+
   def self.active?
-    Order.where(status: true)
+    # Order.where(status: true)
+    Order.all
   end
 
   def self.inactive?
-    Order.where(status: false)
+    # Order.where(status: false)
+    Order.all
   end
 
   def self.expired?
@@ -21,7 +27,7 @@ class Order < ApplicationRecord
 
   def self.renew id
     @order = Order.where(id: id)
-    @order.update(expire_at: 7.days.from_now)
+    # @order.update(expire_at: 7.days.from_now)
   end
 
   def self.disable id

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :items
   resources :vehicle_details
 
-  root 'orders#index'
+  root 'dashboards#index'
   get 'renew/:id' => 'orders#renew'
   get 'return/:id' => 'orders#disable'
   get 'past_orders' => 'orders#old'
