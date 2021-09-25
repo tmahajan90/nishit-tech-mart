@@ -6,7 +6,7 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
       <h1>
-        All Item Details
+        All Client Details
       </h1>
       <ol class="breadcrumb">
         <li>
@@ -14,7 +14,7 @@
             <i class="fa fa-home"></i>
             Home Page</a>
         </li>
-        <li class="active">All Item Details</li>
+        <li class="active">All Clients</li>
       </ol>
     </section>
 
@@ -28,33 +28,32 @@
               <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                  <th>Item</th>
-                  <th>Chassie No</th>
-                  <th>Engine No</th>
-                  <th>
-                    <i class="ion ion-edit"></i>
-                  </th>
-                  <th>
-                    <i class="ion ion-trash-b"></i>
-                  </th>
-                </tr>
+                    <tr>
+                      <th>Name</th>
+                      <th>E-mail</th>
+                      <th>Phone</th>
+                      <th>
+                        <i class="ion ion-edit"></i>
+                      </th>
+                      <th>
+                        <i class="ion ion-trash-b"></i>
+                      </th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <% @item_details.each do |item_detail| %>
+                  <% @members.each do |member| %>
                     <tr>
-                      <td><%= item_detail.item.name %></td>
-                      <td><%= item_detail.chassie_no %></td>
-                      <td><%= item_detail.engine_no %></td>
-                      <td><%= link_to "", edit_item_detail_path(item_detail), { class: "ion ion-edit"} %></td>
+                      <td><%= member.name %></td>
+                      <td><%= member.email %></td>
+                      <td><%= member.phone %></td>
+                      <td><%= link_to "", edit_member_path(member), { class: "ion ion-edit"} %></td>
                       <td>
-                        <%= link_to item_detail, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <%= link_to member, method: :delete, data: { confirm: 'Are you sure?' } do %>
                         <i class="ion ion-trash-b"></i>
                         <% end %>
                       </td>
                     </tr>
-                    <% end %>
-                  </tbody>
+                  <% end %>
                 </table>
               </div>
               <!-- /.box-body -->

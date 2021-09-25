@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20210925121346) do
   create_table "item_details", force: :cascade do |t|
     t.integer  "item_id"
     t.string   "chassie_no"
+    t.string   "engine_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

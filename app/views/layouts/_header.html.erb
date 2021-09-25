@@ -6,7 +6,7 @@
       <b>f</b>inv</span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg">
-      <b>fossaegean</b>
+      <b>Nishit Tech Mart</b>
     </span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
@@ -59,6 +59,7 @@
           <span>Past Orders</span>
         </a>
       </li>
+      <br>
       <li>
         <a href=" <%= new_item_path %>">
           <i class="fa fa-plus"></i>
@@ -66,15 +67,28 @@
         </a>
       </li>
       <li>
+        <a href="<%= new_item_detail_path %>">
+          <i class="fa fa-plus-square"></i>
+          <span>Add New Item Detail</span>
+        </a>
+      </li>
+      <li>
+        <a href="<%= item_details_path %>">
+          <i class="fa fa-list-ul"></i>
+          <span>All Item Details</span>
+        </a>
+      </li>
+      <br>
+      <li>
         <a href="<%= new_member_path %>">
           <i class="fa fa-user-plus"></i>
           <span>Add Client</span>
         </a>
       </li>
       <li>
-        <a href="<%= new_item_detail_path %>">
-          <i class="fa fa-user-plus"></i>
-          <span>Add Product Details</span>
+        <a href="<%= members_path %>">
+          <i class="fa fa-users"></i>
+          <span>All Clients</span>
         </a>
       </li>
     </ul>

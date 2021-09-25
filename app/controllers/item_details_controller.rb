@@ -4,6 +4,7 @@ class ItemDetailsController < ApplicationController
   # GET /item_details
   # GET /item_details.json
   def index
+    @items = Item.all
     @item_details = ItemDetail.all
   end
 
@@ -14,6 +15,7 @@ class ItemDetailsController < ApplicationController
 
   # GET /item_details/new
   def new
+    @items = Item.all
     @item_detail = ItemDetail.new
   end
 
@@ -69,6 +71,6 @@ class ItemDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_detail_params
-      params.require(:item_detail).permit(:chassie_no)
+      params.require(:item_detail).permit(:item_id, :engine_no,:chassie_no)
     end
 end
