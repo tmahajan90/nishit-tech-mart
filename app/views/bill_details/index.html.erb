@@ -30,6 +30,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>Invoice No</th>
                     <th>Delivery Date</th>
                     <th>Client Name</th>
                     <th>Chassis No.</th>
@@ -49,6 +50,7 @@
                 <tbody>
                 <% @bill_details.each do |bill_detail| %>
                   <tr>
+                    <td><%= bill_detail.invoice_no %></td>
                     <td><%= bill_detail.order.delivery_on %></td>
                     <td><%= bill_detail.order.client.name %></td>
                     <td><%= bill_detail.order.vehicle_detail.chassis_no %></td>
@@ -80,6 +82,7 @@
   $(function () {
     $("#example1").DataTable({
       "pageLength": 50, 
+      "order": [[ 0, "desc" ]]
     });
   });
 </script>

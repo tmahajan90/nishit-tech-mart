@@ -60,7 +60,7 @@
                     </td>
                     <td>
                         <% if order.bill_detail %>
-                          <%= "Generated" %>
+                          <i class="fa fa-download"></i>
                         <% else %>
                           <%= link_to "Generate", new_bill_detail_path(order_id: order.id) %>
                         <% end %>

@@ -8,5 +8,17 @@ class BillDetail < ApplicationRecord
     validates :subsidy_price, presence: true
     validates :total_price, presence: true
 
+    before_create :generate_invoice_number
+
+
+    private
+
+    def generate_invoice_number
+        if (BillDetail.all.length > 0)
+            self.invoice_no = BillDetail.maximum(:invoice_no) + 1
+        else
+            self.invoice_no = 251
+        end   
+    end
 
 end

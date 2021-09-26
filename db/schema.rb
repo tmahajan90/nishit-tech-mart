@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20210926104550) do
     t.string   "gst_price"
     t.string   "subsidy_price"
     t.string   "total_price"
+    t.integer  "invoice_no"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["order_id"], name: "index_bill_details_on_order_id", using: :btree

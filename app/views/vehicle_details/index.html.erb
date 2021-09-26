@@ -33,6 +33,9 @@
                   <th>Vehicle Received On</th>
                   <th>Chassis No</th>
                   <th>Engine No</th>
+                  <th>Controller No</th>
+                  <th>Motor No</th>
+                  <th>Color</th>
                   <th>
                     <i class="ion ion-edit"></i>
                   </th>
@@ -48,6 +51,9 @@
                       <td><%= vehicle_detail.item.received_on.strftime('%Y-%m-%d') %></td>
                       <td><%= vehicle_detail.chassis_no %></td>
                       <td><%= vehicle_detail.engine_no %></td>
+                      <td><%= vehicle_detail.controller_no %></td>
+                      <td><%= vehicle_detail.motor_no %></td>
+                      <td><%= vehicle_detail.color.name %></td>
                       <td><%= link_to "", edit_vehicle_detail_path(vehicle_detail), { class: "ion ion-edit"} %></td>
                       <td>
                         <%= link_to vehicle_detail, method: :delete, data: { confirm: 'Are you sure?' } do %>
