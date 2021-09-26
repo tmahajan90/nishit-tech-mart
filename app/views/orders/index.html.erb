@@ -41,6 +41,7 @@
                     <th>
                       <i class="ion ion-trash-b"></i>
                     </th>
+                    <th>Bill Details</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -57,6 +58,13 @@
                       <i class="ion ion-trash-b"></i>
                       <% end %>
                     </td>
+                    <td>
+                        <% if order.bill_detail %>
+                          <%= "Generated" %>
+                        <% else %>
+                          <%= link_to "Generate", new_bill_detail_path(order_id: order.id) %>
+                        <% end %>
+                      </td>
                   </tr>
                 <% end %>
               </table>

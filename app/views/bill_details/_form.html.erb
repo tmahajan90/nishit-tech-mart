@@ -5,10 +5,10 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1><%= @bill_detail.id ? 'Edit' : 'Generate' %> Order</h1>
+        <h1><%= @bill_detail.id ? 'Edit' : 'Generate' %> Bill</h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
-          <li class="active"><%= @bill_detail.id ? 'Edit' : 'Generate' %> Order</li>
+          <li class="active"><%= @bill_detail.id ? 'Edit' : 'Generate' %> Bill</li>
         </ol>
       </section>
 
@@ -37,6 +37,7 @@
                 <% end %>
 
                 <div class="box-body">
+                  <%= f.hidden_field :order_id, class: 'form-control', required: true %>
                   <div class="form-group col-md-6">
                   <%= f.label :delivery_on, 'Delivery Date' %>
                   <%= text_field_tag :delivey_on, @order.delivery_on, class: 'form-control', required: true, readonly: true %>
@@ -80,7 +81,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <%= f.submit 'Generate Bill', class: 'btn btn-primary' %>
+                  <%= f.submit "#{@bill_detail.id ? 'Update Bill' : 'Generate Bill'}", class: 'btn btn-primary' %>
                 </div>
               <% end %>
             </div>

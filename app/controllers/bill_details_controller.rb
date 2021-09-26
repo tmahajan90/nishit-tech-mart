@@ -15,25 +15,26 @@ class BillDetailsController < ApplicationController
   # GET /bill_details/new
   def new
     @order = Order.find_by_id(params[:order_id])
-    @bill_detail = BillDetail.new(order_id: @order.id)#(vehicle_detail_id: @order.vehicle_detail_id, client_id: @order.client_id)
+    @bill_detail = BillDetail.new(order_id: @order.id)
     @vehicle_detail = @order.vehicle_detail
   end
 
   # GET /bill_details/1/edit
   def edit
+    @order = @bill_detail.order
+    @vehicle_detail = @order.vehicle_detail
   end
 
   # POST /bill_details
   # POST /bill_details.json
   def create
     @bill_detail = BillDetail.new(bill_detail_params)
-
     respond_to do |format|
       if @bill_detail.save
-        format.html { redirect_to @bill_detail, notice: 'Bill detail was successfully created.' }
+        format.html { redirect_to bill_details_path, notice: 'Bill detail was successfully created.' }
         format.json { render :show, status: :created, location: @bill_detail }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, alert: 'Bill has already been generated' }
         format.json { render json: @bill_detail.errors, status: :unprocessable_entity }
       end
     end
@@ -44,7 +45,7 @@ class BillDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @bill_detail.update(bill_detail_params)
-        format.html { redirect_to @bill_detail, notice: 'Bill detail was successfully updated.' }
+        format.html { redirect_to bill_details_path, notice: 'Bill detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @bill_detail }
       else
         format.html { render :edit }
@@ -71,6 +72,6 @@ class BillDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_detail_params
-      params.fetch(:bill_detail, {})
+      params.require(:bill_detail).permit(:order_id, :base_price, :gst_price, :subsidy_price, :total_price)
     end
 end

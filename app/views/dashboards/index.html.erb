@@ -94,31 +94,35 @@
                       <th>Vehicle Type</th>
                       <th>Chassis No</th>
                       <th>Engine No</th>
-                      <th>Generate Bill</th>
+                      <th>Bill Details</th>
                     </tr>
                   </thead>
                   <tbody>
                     <% @todays_delivery.each do |order| %>
-                    <tr>
-                      <td>
-                        <%= order.client.name %>
-                      </td>
-                      <td>
-                        <%= order.client.email %>
-                      </td>
-                      <td>
-                        <%= order.vehicle_detail.item.vehicle_type.name %>
-                      </td>
-                      <td>
-                        <%= order.vehicle_detail.chassis_no %>
-                      </td>
-                      <td>
-                        <%= order.vehicle_detail.engine_no %>
-                      </td>
-                      <td>
-                      <%= link_to "Generate Bill", new_bill_detail_path(order_id: order.id) %>
-                      </td>
-                    </tr>
+                      <tr>
+                        <td>
+                          <%= order.client.name %>
+                        </td>
+                        <td>
+                          <%= order.client.email %>
+                        </td>
+                        <td>
+                          <%= order.vehicle_detail.item.vehicle_type.name %>
+                        </td>
+                        <td>
+                          <%= order.vehicle_detail.chassis_no %>
+                        </td>
+                        <td>
+                          <%= order.vehicle_detail.engine_no %>
+                        </td>
+                        <td>
+                          <% if order.bill_detail %>
+                            <%= "Generated" %>
+                          <% else %>
+                            <%= link_to "Generate", new_bill_detail_path(order_id: order.id) %>
+                          <% end %>
+                        </td>
+                      </tr>
                     <% end %>
 
                     <% if @todays_delivery.length <= 0 %>
