@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :items
   resources :vehicle_details
+  resources :bill_details
 
   root 'dashboards#index'
   constraints format: :json do

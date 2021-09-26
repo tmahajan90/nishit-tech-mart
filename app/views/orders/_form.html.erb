@@ -5,10 +5,10 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>Create Order</h1>
+        <h1><%= @order.id ? 'Edit' : 'Add' %> Order</h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
-          <li class="active">Add Order</li>
+          <li class="active"><%= @order.id ? 'Edit' : 'Add' %> Order</li>
         </ol>
       </section>
 
@@ -20,7 +20,7 @@
             <!-- general form elements -->
             <div class="box box-header">
               <div class="box-header with-border">
-                <h3 class="box-title">Basic Information</h3>
+                <h3 class="box-title">Order Information</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->

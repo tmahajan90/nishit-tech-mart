@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210925150556) do
+ActiveRecord::Schema.define(version: 20210926104550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,24 @@ ActiveRecord::Schema.define(version: 20210925150556) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "bill_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "base_price"
+    t.string   "gst_price"
+    t.string   "subsidy_price"
+    t.string   "total_price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["order_id"], name: "index_bill_details_on_order_id", using: :btree
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "phone"
+    t.string   "mobile_no"
+    t.string   "address"
+    t.string   "aadhaar_no"
+    t.string   "pan_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,6 +114,7 @@ ActiveRecord::Schema.define(version: 20210925150556) do
     t.datetime "updated_at",   null: false
   end
 
+  add_foreign_key "bill_details", "orders"
   add_foreign_key "orders", "clients"
   add_foreign_key "orders", "vehicle_details"
 end

@@ -94,7 +94,7 @@
                       <th>Vehicle Type</th>
                       <th>Chassis No</th>
                       <th>Engine No</th>
-                      <th>Delivered</th>
+                      <th>Generate Bill</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -116,12 +116,7 @@
                         <%= order.vehicle_detail.engine_no %>
                       </td>
                       <td>
-                      <% if order.delivered %>
-                      <%= "Delivered" %>
-                      <% else %>
-                        <%= link_to "Click If Delivered", order_path(order, order: {delivered: true}), remote: true, method: :patch %>
-                      <% end %>
-                        
+                      <%= link_to "Generate Bill", new_bill_detail_path(order_id: order.id) %>
                       </td>
                     </tr>
                     <% end %>

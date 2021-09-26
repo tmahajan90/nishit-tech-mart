@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     params[:item][:remaining_quantity] = params[:item][:quantity]
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_urls, notice: 'Item was successfully created.'
+      redirect_to items_url, notice: 'Item was successfully created.'
     else
       render :new
     end
