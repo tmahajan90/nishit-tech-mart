@@ -26,10 +26,9 @@ class VehicleDetailsController < ApplicationController
   # POST /vehicle_details.json
   def create
     @vehicle_detail = VehicleDetail.new(vehicle_detail_params)
-
     respond_to do |format|
       if @vehicle_detail.save
-        format.html { redirect_to @vehicle_detail, notice: 'Vehicle detail was successfully created.' }
+        format.html { redirect_to vehicle_details_url, notice: 'Vehicle detail was successfully created.' }
         format.json { render :show, status: :created, location: @vehicle_detail }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class VehicleDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @vehicle_detail.update(vehicle_detail_params)
-        format.html { redirect_to @vehicle_detail, notice: 'Vehicle detail was successfully updated.' }
+        format.html { redirect_to vehicle_details_url, notice: 'Vehicle detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @vehicle_detail }
       else
         format.html { render :edit }

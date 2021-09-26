@@ -1,10 +1,10 @@
 class Order < ApplicationRecord
   belongs_to :vehicle_detail
-  belongs_to :member
+  belongs_to :client
 
   # validates :pick_up_at, presence: true
   validates :vehicle_detail_id, presence: true
-  validates :member_id, presence: true
+  validates :client_id, presence: true
 
 
   def self.today?

@@ -1,6 +1,6 @@
 class VehicleDetail < ApplicationRecord
     belongs_to :item
-    has_many :member, through: :order
+    has_many :client, through: :order
 
     validates :item_id, :presence => true
     validates :engine_no, :presence => true

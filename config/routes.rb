@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :orders
-  resources :members
+  resources :clients
   resources :users
   resources :items
   resources :vehicle_details

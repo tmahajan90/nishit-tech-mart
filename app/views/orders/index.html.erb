@@ -47,7 +47,7 @@
                 <% @orders.each do |order| %>
                   <tr>
                     <td><%= order.delivery_on %></td>
-                    <td><%= "#{order.member.name} (#{order.member.email})" %></td>
+                    <td><%= "#{order.client.name} (#{order.client.email})" %></td>
                     <td><%= order.vehicle_detail.item.vehicle_type.name %></td>
                     <td><%= order.vehicle_detail.chassie_no %></td>
                     <td><%= order.vehicle_detail.engine_no %></td>

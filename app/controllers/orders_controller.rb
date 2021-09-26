@@ -46,7 +46,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to :root, notice: 'Order was successfully created.'else
+      redirect_to orders_url, notice: 'Order was successfully created.'
+    else
       render :new
     end
   end
@@ -56,7 +57,10 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      redirect_to :root, notice: 'Order was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to orders_url, notice: 'Order was successfully updated.'}
+        format.js { render nothing: true, status: :ok,  notice: 'Order was successfully updated.' }
+      end
     else
       render :edit
     end
@@ -82,11 +86,11 @@ class OrdersController < ApplicationController
     end
 
     def set_data
-      @members = Member.all
+      @clients = Client.all
       @vehicle_details = VehicleDetail.all
     end
 
     def order_params
-      params.require(:order).permit(:id, :delivery_on, :member_id, :vehicle_detail_id)
+      params.require(:order).permit(:id, :delivery_on, :client_id, :vehicle_detail_id, :delivered)
     end
 end

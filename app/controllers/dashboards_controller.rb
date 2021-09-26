@@ -1,10 +1,8 @@
 class DashboardsController < ApplicationController
   def index
-    # @dashboards = Dashboard.all
-    @orders = Order.all
-    @members = Member.all
     @items = Item.all
-    @active = Order.today?
-    @expired = Order.expired?
+    @availableItems = @items.sum(:quantity) - Order.count
+    @bookedItems = Order.count
+    @todays_delivery = Order.where(delivery_on: Date.today)
   end
 end

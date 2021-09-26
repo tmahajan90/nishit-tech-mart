@@ -5,11 +5,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Edit Member
+      Add Client
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-home"></i> Home Page</a></li>
-      <li class="active">Edit Member</li>
+      <li class="active">Add Client</li>
     </ol>
   </section>
 
@@ -25,13 +25,13 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <%= form_for(@member) do |f| %>
-            <% if @member.errors.any? %>
+          <%= form_for(@client) do |f| %>
+            <% if @client.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+                <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
 
                 <ul>
-                <% @member.errors.full_messages.each do |message| %>
+                <% @client.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
                 <% end %>
                 </ul>

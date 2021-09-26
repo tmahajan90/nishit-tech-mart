@@ -43,7 +43,7 @@
                   </div>
                   <div class="form-group">
                     <label>Client Name</label>
-                    <%= f.select(:member_id, @members.map { |member| [ "#{member.name} (#{member.email})", member.id ]}, {}, { :class => 'form-control' })%>
+                    <%= f.select(:client_id, @clients.map { |client| [ "#{client.name} (#{client.email})", client.id ]}, {}, { :class => 'form-control' })%>
                   </div>
                   <div class="form-group">
                     <label>Vehicle Id</label>

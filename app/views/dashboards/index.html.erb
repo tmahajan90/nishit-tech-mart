@@ -40,7 +40,7 @@
             <!-- small box -->
             <div class="small-box bg-green">
               <div class="inner">
-                <h3><%=@items.sum(:remaining_quantity)%></h3>
+                <h3><%=@availableItems%></h3>
                 <p>Available Items</p>
               </div>
               <div class="icon">
@@ -53,7 +53,7 @@
             <!-- small box -->
             <div class="small-box bg-red">
               <div class="inner">
-                <h3><%= (@items.sum(:quantity) - @items.sum(:remaining_quantity)) %></h3>
+                <h3><%= @bookedItems %></h3>
                 <p>Booked Items</p>
               </div>
               <div class="icon">
@@ -66,7 +66,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
               <div class="inner">
-                <h3><%= '@expired.count' %></h3>
+                <h3><%= 'N\A' %></h3>
                 <p>Expired Orders</p>
               </div>
               <div class="icon">
@@ -79,56 +79,57 @@
         <!-- /.row -->
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Orders (<%= '@active.count' %>)</h3>
+                <h3 class="box-title">Today's Orders (<%= @todays_delivery.count %>)</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                 <table class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>Item</th>
-                      <th>Qty</th>
-                      <th>Return By (Delivery Date)</th>
-                      <th>Borrowed By (Client Name)</th>
-                      <th>
-                        <i class="ion ion-log-in"></i>
-                      </th>
-                      <th>
-                        <i class="ion ion-loop"></i>
-                      </th>
-                      <th>
-                        <i class="ion ion-trash-b"></i>
-                      </th>
+                      <th>Client Name</th>
+                      <th>Contact No</th>
+                      <th>Vehicle Type</th>
+                      <th>Chassie No</th>
+                      <th>Engine No</th>
+                      <th>Delivered</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% @active.each do |order| %>
+                    <% @todays_delivery.each do |order| %>
                     <tr>
+                      <td>
+                        <%= order.client.name %>
+                      </td>
+                      <td>
+                        <%= order.client.email %>
+                      </td>
                       <td>
                         <%= order.vehicle_detail.item.vehicle_type.name %>
                       </td>
-                      <td><%= 'order.quantity' %></td>
                       <td>
-                        <%= 'order.expire_at' %>
+                        <%= order.vehicle_detail.chassie_no %>
                       </td>
                       <td>
-                        <%= order.member.name %>
+                        <%= order.vehicle_detail.engine_no %>
                       </td>
                       <td>
-                        <%= link_to "", { :controller => :orders, :action => :disable, :id => order.id }, { class: "ion ion-log-in"} %>
-                      </td>
-                      <td>
-                        <%= link_to "", { :controller => :orders, :action => :renew, :id => order.id }, { class: "ion ion-loop"} %>
-                      </td>
-                      <td >
-                        <%= link_to order, method: :delete, data: { confirm: 'Are you sure? If you are trying to return an item it is recommended to use the "return" button.' } do %>
-                        <i class="ion ion-trash-b"></i>
-                        <% end %>
+                      <% if order.delivered %>
+                      <%= "Delivered" %>
+                      <% else %>
+                        <%= link_to "Click If Delivered", order_path(order, order: {delivered: true}), remote: true, method: :patch %>
+                      <% end %>
+                        
                       </td>
                     </tr>
+                    <% end %>
+
+                    <% if @todays_delivery.length <= 0 %>
+                      <tr>
+                        <td colspan='6' style="text-align: center" > No orders available</td>
+                      </tr>
                     <% end %>
                   </tbody>
                 </table>
@@ -138,43 +139,7 @@
           </div>
           <!-- ./col -->
 
-          <div class="col-md-6">
-            <div class="box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Clients (<%= @members.count %>)</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                <table class="table table-bordered table-hover">
-                  <tr>
-                    <th>Name</th>
-                    <th>E-mail</th>
-                    <th>Phone</th>
-                    <th>
-                      <i class="ion ion-edit"></i>
-                    </th>
-                    <th>
-                      <i class="ion ion-trash-b"></i>
-                    </th>
-                  </tr>
-                  <% @members.each do |member| %>
-                  <tr>
-                    <td><%= member.name %></td>
-                    <td><%= member.email %></td>
-                    <td><%= member.phone %></td>
-                    <td><%= link_to "", edit_member_path(member), { class: "ion ion-edit"} %></td>
-                    <td>
-                      <%= link_to member, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                      <i class="ion ion-trash-b"></i>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <% end %>
-                </table>
-              </div>
-            </div>
-            <!-- /.box -->
-          </div>
+          
           <!-- ./col -->
         </div>
         <!-- /.row -->
@@ -189,14 +154,6 @@
     <script>
       $(function () {
         $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
       });
     </script>
   </body>
