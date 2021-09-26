@@ -33,7 +33,7 @@
                     <th>Delivery Date</th>
                     <th>Client Name</th>
                     <th>Vehicle Type</th>
-                    <th>Chassie No</th>
+                    <th>Chassis No</th>
                     <th>Engine No</th>
                     <th>
                       <i class="ion ion-edit"></i>
@@ -49,7 +49,7 @@
                     <td><%= order.delivery_on %></td>
                     <td><%= "#{order.client.name} (#{order.client.email})" %></td>
                     <td><%= order.vehicle_detail.item.vehicle_type.name %></td>
-                    <td><%= order.vehicle_detail.chassie_no %></td>
+                    <td><%= order.vehicle_detail.chassis_no %></td>
                     <td><%= order.vehicle_detail.engine_no %></td>
                     <td><%= link_to "", edit_order_path(order), { class: "ion ion-edit"} %></td>
                     <td>

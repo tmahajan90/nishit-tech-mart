@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 20210925150556) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "batteries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -23,19 +30,11 @@ ActiveRecord::Schema.define(version: 20210925150556) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  create_table "colors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -79,13 +78,18 @@ ActiveRecord::Schema.define(version: 20210925150556) do
 
   create_table "vehicle_details", force: :cascade do |t|
     t.integer  "item_id"
-    t.string   "chassie_no"
+    t.string   "chassis_no"
     t.string   "engine_no"
     t.string   "controller_no"
     t.string   "motor_no"
-    t.string   "charger_no"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "charger_no_1"
+    t.string   "charger_no_2"
+    t.integer  "color_id"
+    t.integer  "make_of_battery"
+    t.integer  "battery_id"
+    t.string   "manual_no"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "vehicle_types", force: :cascade do |t|

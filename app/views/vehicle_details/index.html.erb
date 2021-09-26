@@ -31,7 +31,7 @@
                   <tr>
                   <th>Vehicle Type</th>
                   <th>Vehicle Received On</th>
-                  <th>Chassie No</th>
+                  <th>Chassis No</th>
                   <th>Engine No</th>
                   <th>
                     <i class="ion ion-edit"></i>
@@ -46,7 +46,7 @@
                     <tr>
                       <td><%= vehicle_detail.item.vehicle_type.name %></td>
                       <td><%= vehicle_detail.item.received_on.strftime('%Y-%m-%d') %></td>
-                      <td><%= vehicle_detail.chassie_no %></td>
+                      <td><%= vehicle_detail.chassis_no %></td>
                       <td><%= vehicle_detail.engine_no %></td>
                       <td><%= link_to "", edit_vehicle_detail_path(vehicle_detail), { class: "ion ion-edit"} %></td>
                       <td>

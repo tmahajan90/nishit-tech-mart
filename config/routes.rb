@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :vehicle_details
 
   root 'dashboards#index'
-  get 'renew/:id' => 'orders#renew'
-  get 'return/:id' => 'orders#disable'
-  get 'past_orders' => 'orders#old'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  constraints format: :json do
+    get 'orders/search', to: 'orders#search'
+  end
+  # get 'renew/:id' => 'orders#renew'
+  # get 'return/:id' => 'orders#disable'
+  # get 'past_orders' => 'orders#old'
 end
